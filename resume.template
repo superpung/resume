@@ -1,0 +1,105 @@
+{
+  "configs": {
+    "icon_png": "",
+    "icon_svg": "",
+    "site_url": ""
+  },
+  "basics": {
+    "name": "",
+    "picture": "",
+    "label": "",
+    "summary": "",
+    "website": "",
+    "address": "",
+    "email": "",
+    "profiles": [
+      {
+        "network": "Scholar",
+        "username": "",
+        "url": "https://scholar.google.com/"
+      },
+      {
+        "network": "GitHub",
+        "username": "",
+        "url": "https://github.com/"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/",
+        "username": ""
+      },
+      {
+        "network": "Twitter",
+        "url": "https://twitter.com/",
+        "username": ""
+      },
+      {
+        "network": "Portfolio",
+        "username": "",
+        "url": ""
+      }
+    ]
+  },
+  "news": [
+    {
+      "title": "",
+      "date": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "",
+      "major": "",
+      "degree": "",
+      "startDate": "",
+      "endDate": "",
+      "description": ""
+    }
+  ],
+  "publications": [
+    {
+      "publisher": "",
+      "grade": "",
+      "title": "",
+      "authors": [],
+      "venue": "",
+      "startDate": "",
+      "endDate": "",
+      "pages": "",
+      "location": "",
+      "url": "",
+      "highlight": ""
+    }
+  ],
+  "patents": [
+    {
+      "title": "",
+      "description": "",
+      "date": ""
+    }
+  ],
+  "talks": [
+    {
+      "title": "",
+      "publisher": "",
+      "description": "",
+      "website": "",
+      "slides": "",
+      "date": ""
+    }
+  ],
+  "services": [
+    {
+      "position": "",
+      "date": ""
+    }
+  ],
+  "awards": [
+    {
+      "title": "",
+      "awarder": "",
+      "description": "",
+      "date": ""
+    }
+  ]
+}

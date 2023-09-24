@@ -1,0 +1,79 @@
+@media print {
+  .name-and-profession .name {
+    margin-top: -2rem;
+  }
+  .page {
+    margin-top: -4rem;
+  }
+  .social-links {
+    margin-top: 0.5rem;
+  }
+  body {
+    font-size: 10pt;
+  }
+  a[href]:after {
+    content: none !important;
+  }
+  .pagebreak {
+    page-break-before: always;
+  }
+  .card {
+    border: 0;
+    padding: 0;
+  }
+  .text-muted {
+    color: #777 !important;
+    * {
+      color: inherit !important;
+    }
+  }
+  .text-box {
+    border: 1px solid @card-border-color !important;
+    padding: 0 5px;
+    background: @theme-bg !important;
+    color: @theme-text-box-color !important;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+  .contact-details .detail .icon {
+    color: #888 !important;
+  }
+  .labels {
+    display: inline;
+  }
+  .profile-card {
+    text-align: center;
+  }
+  .print-only {
+    display: inherit;
+  }
+  .no-print {
+    display: none;
+  }
+  .project-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.8rem 1rem;
+  }
+  .highlight {
+    margin-top: -0.3rem;
+  }
+  blockquote {
+    font-size: 100%;
+  }
+  .card-nested {
+    padding: 0.1rem 0 0.1rem 1rem;
+
+    &.relax {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+  .background-card h4:not(:first-child) {
+    margin-top: 1em;
+  }
+}
