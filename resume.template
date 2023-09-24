@@ -1,17 +1,17 @@
 {
   "configs": {
-    "icon_png": "",
-    "icon_svg": "",
-    "site_url": ""
+    "icon_png": "url to a png file, used for the resume website icon",
+    "icon_svg": "ditto, but svg",
+    "site_url": "the resume website url, endding with a slash",
   },
   "basics": {
-    "name": "",
-    "picture": "",
-    "label": "",
-    "summary": "",
-    "website": "",
-    "address": "",
-    "email": "",
+    "name": "your name",
+    "picture": "url to your picture file",
+    "label": "your professional title",
+    "summary": "this will be displayed on About section",
+    "website": "your personal website url",
+    "address": "your address",
+    "email": "your email address",
     "profiles": [
       {
         "network": "Scholar",
@@ -42,67 +42,71 @@
   },
   "news": [
     {
-      "title": "",
-      "date": ""
+      "title": "a news title",
+      "date": "the news date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
     }
   ],
   "education": [
     {
-      "institution": "",
-      "major": "",
-      "degree": "",
-      "startDate": "",
-      "endDate": "",
-      "description": ""
+      "institution": "an education institution",
+      "major": "your major",
+      "degree": "your degree, such as Computer Science",
+      "startDate": "start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "endDate": "end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "description": "under the supervision of Prof. XXX"
     }
   ],
   "interests": [
-    ""
+    "your research interest"
   ]
   "publications": [
     {
-      "publisher": "",
-      "grade": "",
-      "title": "",
-      "authors": [],
-      "venue": "",
-      "startDate": "",
-      "endDate": "",
-      "pages": "",
-      "location": "",
-      "url": "",
-      "highlight": ""
+      "publisher": "a publisher name, such as IEEE'23",
+      "grade": "the publisher grade, such as CCF-A",
+      "title": "your publication title",
+      "authors": [
+        "author 1, it'll automatically become bold if the author is yourself",
+        "author 2, it'll automatically become bold if the author is yourself",
+        "author 3, it'll automatically become bold if the author is yourself"
+      ],
+      "venue": "the publication venue, such as IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "startDate": "the publisher start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "endDate": "the publisher end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "pages": "the pages of your publication",
+      "location": "location of publisher",
+      "url": "the url to your publication",
+      "highlight": "best paper award, etc."
     }
   ],
   "patents": [
     {
-      "title": "",
-      "description": "",
-      "date": ""
+      "title": "your patents title",
+      "description": "description of your patent",
+      "date": "date of your patent, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "talks": [
     {
-      "title": "",
-      "publisher": "",
-      "description": "",
-      "website": "",
-      "slides": "",
-      "date": ""
+      "title": "your talk title",
+      "publisher": "the publisher of your talk",
+      "description": "description of your talk",
+      "website": "website of the publisher"
+      "slides": "url to your slides",
+      "date": "date of your talk, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "services": [
     {
-      "position": "",
-      "date": ""
+      "position": "your academic service position",
+      "date": "date of your position, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "awards": [
     {
-      "title": "",
-      "awarder": "",
-      "description": "",
-      "date": ""
+      "title": "your award title",
+      "awarder": "the awarder of your award",
+      "description": "description of your award",
+      "date": "date of your award, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ]
 }
