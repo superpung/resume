@@ -8,7 +8,7 @@
     "name": "your name",
     "picture": "url to your picture file",
     "label": "your professional title",
-    "summary": "this will be displayed on About section",
+    "summary": "this will be displayed on About section on the right, use <a> to add a link, \n to add a line break.",
     "website": "your personal website url",
     "address": "your address",
     "email": "your email address",
@@ -42,7 +42,7 @@
   },
   "news": [
     {
-      "title": "a news title",
+      "title": "a news title, use <a> to add a link",
       "date": "the news date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
     }
   ],
