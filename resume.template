@@ -2,7 +2,7 @@
   "configs": {
     "icon_png": "url to a png file, used for the resume website icon",
     "icon_svg": "ditto, but svg",
-    "site_url": "the resume website url, endding with a slash",
+    "site_url": "the resume website url, but don't end with a slash",
   },
   "basics": {
     "name": "your name",
