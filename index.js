@@ -101,11 +101,15 @@ async function render(resume) {
   });
 
   _.each(resume.services, function (service_info) {
-    _.each(['startDate', 'endDate'], function (date) {
-      if (service_info[date]) {
-        service_info[date] = getDate(service_info[date]);
-      }
-    });
+    if (service_info.date) {
+      service_info.date = getDate(service_info.date);
+    }
+  });
+
+  _.each(resume.teaching, function (teaching_info) {
+    if (teaching_info.date) {
+      teaching_info.date = getDate(teaching_info.date);
+    }
   });
 
   _.each(resume.awards, function (award_info) {
@@ -124,7 +128,8 @@ async function render(resume) {
       link: 'ri:arrow-right-up-line',
       portfolio: 'ri:account-circle-fill',
       scholar: 'ri:graduation-cap-fill',
-      slides: 'ri:slideshow-2-line'
+      slides: 'ri:slideshow-2-line',
+      orcid: 'academicons:orcid'
     }[text.trim().toLowerCase()]
   })
 

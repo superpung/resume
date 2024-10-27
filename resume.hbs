@@ -196,6 +196,9 @@
                     <p class="text-muted clear-margin-sm">
                       <small>
                         {{date}}
+                        {{#if location}}&nbsp;
+                          {{location}}
+                        {{/if}}
                         {{#if slides}}&nbsp;
                           <a href="{{slides}}" class='icon' target="_blank">
                             <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span>
@@ -227,6 +230,24 @@
             </ul>
             {{/if}}
 
+            {{#if resume.teaching}}
+            <h4 id="services"><span class="title">Teaching</span></h4>
+            <ul class="list-unstyled">
+              {{#each resume.teaching}}
+                <li class="card-nested">
+                  <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      {{{course}}}
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small>{{date}}</small>
+                    </p>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+
             {{#if resume.awards}}
             <h4 id="awards"><span class="title">Honors & Awards</span></h4>
             <ul class="list-unstyled">
@@ -238,7 +259,7 @@
                       {{awarder}}
                     </p>
                     {{#if description}}
-                      <p class="clear-margin-sm">{{description}}</p>
+                      <p class="clear-margin-sm"><i>{{description}}</i></p>
                     {{/if}}
                     <p class="text-muted clear-margin-sm">
                       <small> {{date}} </small>

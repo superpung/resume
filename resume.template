@@ -29,6 +29,10 @@
         "username": ""
       },
       {
+        "network": "ORCiD",
+        "url": "https://orcid.org/"
+      },
+      {
         "network": "Twitter",
         "url": "https://twitter.com/",
         "username": ""
@@ -91,6 +95,7 @@
       "publisher": "the publisher of your talk",
       "description": "description of your talk",
       "website": "website of the publisher",
+      "location": "location of your talk",
       "slides": "url to your slides",
       "date": "date of your talk, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
@@ -99,6 +104,12 @@
     {
       "position": "your academic service position",
       "date": "date of your position, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
+    }
+  ],
+  "teaching": [
+    {
+      "course": "your teaching course",
+      "date": "date of your teaching course, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "awards": [
