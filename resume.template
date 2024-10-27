@@ -2,7 +2,7 @@
   "configs": {
     "icon_png": "url to a png file, used for the resume website icon",
     "icon_svg": "ditto, but svg",
-    "site_url": "the resume website url, but don't end with a slash",
+    "site_url": "the resume website url, but don't end with a slash"
   },
   "basics": {
     "name": "your name",
@@ -43,7 +43,7 @@
   "news": [
     {
       "title": "a news title, use <a> to add a link",
-      "date": "the news date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "date": "the news date, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "education": [
@@ -58,7 +58,7 @@
   ],
   "interests": [
     "your research interest"
-  ]
+  ],
   "publications": [
     {
       "publisher": "a publisher name, such as IEEE'23",
@@ -90,7 +90,7 @@
       "title": "your talk title",
       "publisher": "the publisher of your talk",
       "description": "description of your talk",
-      "website": "website of the publisher"
+      "website": "website of the publisher",
       "slides": "url to your slides",
       "date": "date of your talk, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
