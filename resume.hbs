@@ -157,6 +157,30 @@
             </ol>
             {{/if}}
 
+            {{#if resume.projects}}
+            <h4 id="projects"><span class="title">Projects</span></h4>
+            <ul class="list-unstyled">
+              {{#each resume.projects}}
+              <li class="card-nested">
+                <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong>{{title}}</strong>,&nbsp;
+                      {{institution}}
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      {{description}}
+                    </p>
+                    <p class="text-muted clear-margin-sm">
+                      <small>
+                        {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
+                      </small>
+                    </p>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+
             {{#if resume.patents}}
             <h4 id="patents"><span class="title">Patents</span></h4>
             <ul class="list-unstyled">
@@ -231,7 +255,7 @@
             {{/if}}
 
             {{#if resume.teaching}}
-            <h4 id="services"><span class="title">Teaching</span></h4>
+            <h4 id="teaching"><span class="title">Teaching</span></h4>
             <ul class="list-unstyled">
               {{#each resume.teaching}}
                 <li class="card-nested">

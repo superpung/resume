@@ -82,6 +82,15 @@
       "highlight": "best paper award, etc."
     }
   ],
+  "projects": [
+    {
+      "title": "your project title",
+      "institution": "institution of your project",
+      "description": "description of your project",
+      "startDate": "start date of your project, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "endDate": "start date of your project, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
+    }
+  ],
   "patents": [
     {
       "title": "your patents title",
