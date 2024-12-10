@@ -80,7 +80,7 @@ async function render(resume) {
     var description = [
       'In: <i>' + publication_info.venue + '</i>',
       publication_info.startDate + (publication_info.endDate ? ('-' + publication_info.endDate) : ''),
-      'pages ' + (publication_info.pages ? publication_info.pages : 'to appear')
+      publication_info.pages ? publication_info.pages : 'pages to appear'
     ];
     if (publication_info.location) {
       description.push(publication_info.location);
