@@ -118,7 +118,7 @@
               <li class="card-nested">
                 <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      {{.}}
+                      <strong>{{topic}}</strong>{{#if description}}:&nbsp;{{description}}{{/if}}
                     </p>
                 </div>
               </li>
@@ -135,7 +135,7 @@
                     <p class="clear-margin-sm">
                       <span class="text-box">{{publisher}}</span>
                       <strong>{{title}}</strong>
-                      <span class="text-box">{{grade}}</span>
+                      <span class="badge">{{grade}}</span>
                     </p>
                     <p class="clear-margin">{{authors}}</p>
                     <p class="text-muted clear-margin-sm">

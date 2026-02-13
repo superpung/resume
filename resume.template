@@ -61,7 +61,10 @@
     }
   ],
   "interests": [
-    "your research interest"
+    {
+      "topic": "a research topic, such as deep learning",
+      "description": "description of your research topic"
+    }
   ],
   "publications": [
     {
