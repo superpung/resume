@@ -81,8 +81,15 @@
       "endDate": "the publisher end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
       "pages": "the pages of your publication",
       "location": "location of publisher",
-      "url": "the url to your publication",
-      "highlight": "best paper award, etc."
+      "highlight": "best paper award, etc.",
+      "doi": "the doi link of your publication",
+      "pdf": "url to your publication pdf file",
+      "homepage": "url to your publication homepage",
+      "code": "url to your publication code repository",
+      "artifacts": "url to your publication artifacts",
+      "slides": "url to your publication slides",
+      "video": "url to your publication video",
+      "poster": "url to your publication poster"
     }
   ],
   "projects": [
@@ -109,18 +116,22 @@
       "website": "website of the publisher",
       "location": "location of your talk",
       "slides": "url to your slides",
+      "video": "url to your record video",
       "date": "date of your talk, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "services": [
     {
       "position": "your academic service position",
+      "event": "the event of your academic service, such as AAAI'23",
+      "location": "location of event",
       "date": "date of your position, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
   "teaching": [
     {
       "course": "your teaching course",
+      "location": "location of your teaching course",
       "date": "date of your teaching course, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],

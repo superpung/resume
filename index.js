@@ -75,7 +75,13 @@ async function render(resume) {
         authorArr.push(author);
       }
     });
-    publication_info.authors = new Handlebars.SafeString(authorArr.join(',&nbsp;'));
+    let formattedAuthors;
+    if (authorArr.length <= 1) {
+      formattedAuthors = authorArr.join('');
+    } else {
+      formattedAuthors = authorArr.slice(0, -1).join(', ') + ", and " + authorArr[authorArr.length - 1];
+    }
+    publication_info.authors = new Handlebars.SafeString(formattedAuthors + '.');
 
     var description = [
       'In: <i>' + publication_info.venue + '</i>',
@@ -125,11 +131,17 @@ async function render(resume) {
       instagram: 'ri:instagram-line',
       twitter: 'ri:twitter-fill',
       website: 'ri:global-line',
-      link: 'ri:arrow-right-up-line',
+      link: 'ri:link',
       portfolio: 'ri:account-circle-fill',
       scholar: 'ri:graduation-cap-fill',
       slides: 'ri:slideshow-2-line',
-      orcid: 'academicons:orcid'
+      orcid: 'academicons:orcid',
+      video: 'ri:video-on-line',
+      pdf: 'ri:file-pdf-line',
+      homepage: 'ri:home-2-line',
+      artifacts: 'ri:archive-line',
+      code: 'ri:code-s-slash-line',
+      poster: 'ri:layout-masonry-line'
     }[text.trim().toLowerCase()]
   })
 

@@ -138,12 +138,51 @@
                       <span class="badge">{{grade}}</span>
                     </p>
                     <p class="clear-margin">{{authors}}</p>
-                    <p class="text-muted clear-margin-sm">
+                    <p class="clear-margin-sm">
                       <small>
                         {{description}}
-                        {{#if url}}
-                          <a href="{{url}}" class='icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span>
+                      </small>
+                    </p>
+                    <p class="clear-margin-sm">
+                      <small class="split-items">
+                        {{#if doi}}
+                          <a href="{{doi}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span> DOI
+                          </a>
+                        {{/if}}
+                        {{#if pdf}}
+                          <a href="{{pdf}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'pdf'}}"></span> PDF
+                          </a>
+                        {{/if}}
+                        {{#if homepage}}
+                          <a href="{{homepage}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span> Homepage
+                          </a>
+                        {{/if}}
+                        {{#if code}}
+                          <a href="{{code}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'code'}}"></span> Code
+                          </a>
+                        {{/if}}
+                        {{#if artifacts}}
+                          <a href="{{artifacts}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'artifacts'}}"></span> Artifacts
+                          </a>
+                        {{/if}}
+                         {{#if slides}}
+                          <a href="{{slides}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span> Slides
+                          </a>
+                        {{/if}}
+                         {{#if video}}
+                          <a href="{{video}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'video'}}"></span> Video
+                          </a>
+                        {{/if}}
+                        {{#if poster}}
+                          <a href="{{poster}}" class='text-icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'poster'}}"></span> Poster
                           </a>
                         {{/if}}
                       </small>
@@ -218,14 +257,19 @@
                       </p>
                     {{/if}}
                     <p class="text-muted clear-margin-sm">
-                      <small>
+                      <small class="split-items">
                         {{date}}
-                        {{#if location}}&nbsp;
-                          {{location}}
+                        {{#if location}}
+                          <span>{{location}}</span>
                         {{/if}}
-                        {{#if slides}}&nbsp;
+                        {{#if slides}}
                           <a href="{{slides}}" class='icon' target="_blank">
                             <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span>
+                          </a>
+                        {{/if}}
+                        {{#if video}}
+                          <a href="{{video}}" class='icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'video'}}"></span>
                           </a>
                         {{/if}}
                       </small>
@@ -243,10 +287,15 @@
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      {{position}}
+                      <strong>{{position}}</strong>,&nbsp;{{event}}
                     </p>
                     <p class="text-muted clear-margin-sm">
-                      <small>{{date}}</small>
+                      <small class="split-items">
+                        {{date}}
+                        {{#if location}}
+                          <span>{{location}}</span>
+                        {{/if}}
+                      </small>
                     </p>
                   </div>
                 </li>
@@ -264,7 +313,12 @@
                       {{{course}}}
                     </p>
                     <p class="text-muted clear-margin-sm">
-                      <small>{{date}}</small>
+                      <small class="split-items">
+                        {{date}}
+                        {{#if location}}
+                          <span>{{location}}</span>
+                        {{/if}}
+                      </small>
                     </p>
                   </div>
                 </li>

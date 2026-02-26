@@ -60,12 +60,26 @@ a {
   color: inherit;
   text-decoration: none;
 
-  &:not(.icon) {
+  &:not(.icon):not(.text-icon) {
     border-bottom: 1px dashed #0005;
   }
   &:hover,
   &:focus {
     text-decoration: none;
+  }
+}
+
+a.text-icon {
+  color: @theme-text-box-color;
+  border-bottom: 0;
+
+  &:hover ,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  .iconify {
+    color: currentColor;
   }
 }
 
