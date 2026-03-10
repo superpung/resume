@@ -136,6 +136,7 @@ async function render(resume) {
       scholar: 'ri:graduation-cap-fill',
       slides: 'ri:slideshow-2-line',
       orcid: 'academicons:orcid',
+      researchgate: 'academicons:researchgate-square',
       video: 'ri:video-on-line',
       pdf: 'ri:file-pdf-line',
       homepage: 'ri:home-2-line',
