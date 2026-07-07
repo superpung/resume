@@ -9,7 +9,7 @@ function hasEmail(resume) {
 }
 
 function getDate(dateStr) {
-  format = 'MMM YYYY';
+  var format = 'MMM YYYY';
   switch (dateStr.split('-').length) {
     case 1:
       format = 'YYYY';
@@ -28,13 +28,7 @@ function getDate(dateStr) {
 
 async function render(resume) {
   var css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8'),
-    template = fs.readFileSync(__dirname + '/resume.hbs', 'utf-8'),
-    profiles = resume.basics.profiles,
-    social_sites = ["github", "linkedin", "stackoverflow", "twitter",
-      "soundcloud", "pinterest", "vimeo", "behance",
-      "codepen", "foursquare", "reddit", "spotify",
-      "dribble", "dribbble", "facebook", "angellist",
-      "bitbucket", "skype"]
+    template = fs.readFileSync(__dirname + '/resume.hbs', 'utf-8')
 
   if (!resume.basics.picture && hasEmail(resume)) {
     resume.basics.picture = gravatar.url(resume.basics.email.replace('(at)', '@'), {
