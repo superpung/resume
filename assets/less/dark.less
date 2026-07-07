@@ -4,7 +4,7 @@
 
 // Dark palette
 @dark-bg: #1a1a1a;
-@dark-card-bg: #242424;
+@dark-card-bg: @dark-bg;
 @dark-card-border: #3a3a3a;
 @dark-font-color: #e0e0e0;
 @dark-muted-color: #9a9a9a;
@@ -19,6 +19,7 @@
 @dark-badge-border: #5a3a3a;
 
 @media (prefers-color-scheme: dark) {
+  html,
   body {
     background: @dark-bg;
     color: @dark-font-color;
