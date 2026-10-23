@@ -106,9 +106,9 @@
                       {{major}},&nbsp;
                       {{institution}}
                     </p>
-                    <p class="clear-margin-sm">
-                      {{description}}
-                    </p>
+                    {{#if description}}
+                      <p class="clear-margin-sm"><i>{{description}}</i></p>
+                    {{/if}}
                     <p class="text-muted clear-margin-sm">
                       <small>
                         {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
@@ -199,13 +199,13 @@
                     {{#if highlight}}
                     <p class="clear-margin highlight">{{highlight}}</p>
                     {{/if}}
+                    {{#if @last}}{{#if @root.hasCorrespondingAuthor}}
+                    <p class="clear-margin-sm list-note text-muted"><small>* Corresponding author</small></p>
+                    {{/if}}{{/if}}
                   </div>
                 </li>
               {{/each}}
             </ol>
-            {{#if hasCorrespondingAuthor}}
-            <p class="card-nested text-muted"><small>* Corresponding author</small></p>
-            {{/if}}
             {{/if}}
 
             {{#if resume.projects}}

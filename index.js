@@ -61,6 +61,9 @@ async function render(resume) {
         education_info[date] = getDate(education_info[date]);
       }
     });
+    if (education_info.description) {
+      education_info.description = new Handlebars.SafeString(education_info.description);
+    }
   });
 
   // Authors marked with a trailing * get a "* Corresponding author" note

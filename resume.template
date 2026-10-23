@@ -57,7 +57,7 @@
       "degree": "your degree, such as Computer Science",
       "startDate": "start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
       "endDate": "end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
-      "description": "under the supervision of Prof. XXX"
+      "description": "under the supervision of Prof. XXX, use <a> to add a link"
     }
   ],
   "interests": [
