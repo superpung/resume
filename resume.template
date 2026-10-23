@@ -101,6 +101,19 @@
       "endDate": "start date of your project, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
+  "opensource": [
+    {
+      "name": "your open source project name",
+      "url": "url to your project repository",
+      "role": "your role in the project, such as Author, Maintainer or Contributor",
+      "description": "description of your project, use <a> to add a link",
+      "keywords": [
+        "a technology used, such as TypeScript",
+        "another technology used"
+      ],
+      "homepage": "url to your project homepage or documentation"
+    }
+  ],
   "patents": [
     {
       "title": "your patents title",

@@ -88,6 +88,12 @@ async function render(resume) {
     publication_info.description = new Handlebars.SafeString(description.join(',&nbsp;') + '.');
   });
 
+  _.each(resume.opensource, function (opensource_info) {
+    if (opensource_info.description) {
+      opensource_info.description = new Handlebars.SafeString(opensource_info.description);
+    }
+  });
+
   _.each(resume.patents, function (patent_info) {
     if (patent_info.date) {
       patent_info.date = getDate(patent_info.date);
