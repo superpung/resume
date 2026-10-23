@@ -80,6 +80,8 @@
   }
   .card-nested {
     padding: 0.1rem 0 0.1rem 1rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
 
     &.relax {
       padding-top: 1rem;
@@ -88,6 +90,23 @@
   }
   .background-card h4:not(:first-child) {
     margin-top: 1em;
+  }
+  // Keep each section heading on the same page as its first entry
+  .background-card h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  // Tighter footer, kept in one piece, so it doesn't spill onto an extra page
+  .page-footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+
+    .print-only {
+      margin-top: 1.5rem !important;
+    }
+    .last-updated {
+      margin-top: 0.5rem !important;
+    }
   }
   .split-items {
     display: inline-flex;
