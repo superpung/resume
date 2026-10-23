@@ -334,30 +334,15 @@
               <li class="card-nested">
                 <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      {{#if url}}<a href="{{url}}" target="_blank"><strong>{{name}}</strong></a>{{else}}<strong>{{name}}</strong>{{/if}}
+                      {{#if url}}<a href="{{url}}" target="_blank"><strong>{{name}}</strong></a>{{else}}<strong>{{name}}</strong>{{/if}}{{#if description}}:&nbsp;{{description}}{{/if}}
+                      {{#if homepage}}
+                        <small class="text-muted">
+                          <a href="{{homepage}}" class='icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span>
+                          </a>
+                        </small>
+                      {{/if}}
                       {{#if role}}<span class="badge">{{role}}</span>{{/if}}
-                    </p>
-                    {{#if description}}
-                      <p class="clear-margin-sm">
-                        {{description}}
-                      </p>
-                    {{/if}}
-                    <p class="text-muted clear-margin-sm">
-                      <small class="split-items">
-                        {{#if keywords}}
-                          <span>{{join keywords}}</span>
-                        {{/if}}
-                        {{#if url}}
-                          <a href="{{url}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'code'}}"></span> Code
-                          </a>
-                        {{/if}}
-                        {{#if homepage}}
-                          <a href="{{homepage}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span> Homepage
-                          </a>
-                        {{/if}}
-                      </small>
                     </p>
                 </div>
               </li>
