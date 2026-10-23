@@ -198,7 +198,7 @@
             {{/if}}
 
             {{#if resume.projects}}
-            <h4 id="projects"><span class="title">Projects</span></h4>
+            <h4 id="projects"><span class="title">Research Projects</span></h4>
             <ul class="list-unstyled">
               {{#each resume.projects}}
               <li class="card-nested">
@@ -323,6 +323,34 @@
                     </p>
                   </div>
                 </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+
+            {{#if resume.opensource}}
+            <h4 id="opensource"><span class="title">Side Projects</span></h4>
+            <ul class="list-unstyled">
+              {{#each resume.opensource}}
+              <li class="card-nested">
+                <div class="content has-sidebar">
+                    <p class="clear-margin-sm">
+                      <strong>{{name}}</strong>{{#if description}}:&nbsp;{{description}}{{/if~}}
+                      <small class="text-muted icon-links">
+                        {{#if url}}
+                          <a href="{{url}}" class='icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'repo'}}"></span>
+                          </a>
+                        {{/if}}
+                        {{#if homepage}}
+                          <a href="{{homepage}}" class='icon' target="_blank">
+                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span>
+                          </a>
+                        {{/if}}
+                      </small>
+                      {{#if role}}<span class="badge">{{role}}</span>{{/if}}
+                    </p>
+                </div>
+              </li>
               {{/each}}
             </ul>
             {{/if}}

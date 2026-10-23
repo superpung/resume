@@ -112,6 +112,12 @@ async function render(resume) {
     }
   });
 
+  _.each(resume.opensource, function (opensource_info) {
+    if (opensource_info.description) {
+      opensource_info.description = new Handlebars.SafeString(opensource_info.description);
+    }
+  });
+
   _.each(resume.awards, function (award_info) {
     if (award_info.date) {
       award_info.date = getDate(award_info.date);
@@ -136,6 +142,7 @@ async function render(resume) {
       homepage: 'ri:home-2-line',
       artifacts: 'ri:archive-line',
       code: 'ri:code-s-slash-line',
+      repo: 'ri:github-line',
       poster: 'ri:layout-masonry-line'
     }[text.trim().toLowerCase()]
   })

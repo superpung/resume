@@ -135,6 +135,15 @@
       "date": "date of your teaching course, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
     }
   ],
+  "opensource": [
+    {
+      "name": "your open source project name",
+      "url": "url to your project repository",
+      "role": "your role in the project, such as Author, Maintainer or Contributor",
+      "description": "description of your project, use <a> to add a link",
+      "homepage": "url to your project homepage or documentation"
+    }
+  ],
   "awards": [
     {
       "title": "your award title",
