@@ -57,7 +57,7 @@
       "degree": "your degree, such as Computer Science",
       "startDate": "start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
       "endDate": "end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
-      "description": "under the supervision of Prof. XXX"
+      "description": "under the supervision of Prof. XXX, use <a> to add a link"
     }
   ],
   "interests": [
@@ -74,7 +74,7 @@
       "authors": [
         "author 1, it'll automatically become bold if the author is yourself",
         "author 2, it'll automatically become bold if the author is yourself",
-        "author 3, it'll automatically become bold if the author is yourself"
+        "author 3*, a trailing * marks the corresponding author and adds a note below the publications"
       ],
       "venue": "the publication venue, such as IEEE Transactions on Pattern Analysis and Machine Intelligence",
       "startDate": "the publisher start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
@@ -132,7 +132,7 @@
     {
       "course": "your teaching course",
       "location": "location of your teaching course",
-      "date": "date of your teaching course, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
+      "date": "date of your teaching course, which format must be YYYY-MM-DD or YYYY-MM or YYYY, or a list of such dates if you taught it several times"
     }
   ],
   "opensource": [
@@ -149,7 +149,7 @@
       "title": "your award title",
       "awarder": "the awarder of your award",
       "description": "description of your award",
-      "date": "date of your award, which format must be YYYY-MM-DD or YYYY-MM or YYYY"
+      "date": "date of your award, which format must be YYYY-MM-DD or YYYY-MM or YYYY, or a list of such dates for an award received several times"
     }
   ]
 }
