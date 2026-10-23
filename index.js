@@ -9,6 +9,10 @@ function hasEmail(resume) {
 }
 
 function getDate(dateStr) {
+  // A list of dates (e.g. an award received several times) is shown as "2024, 2025"
+  if (Array.isArray(dateStr)) {
+    return dateStr.map(getDate).join(', ');
+  }
   var format = 'MMM YYYY';
   switch (dateStr.split('-').length) {
     case 1:
@@ -23,7 +27,8 @@ function getDate(dateStr) {
     default:
       break;
   }
-  return moment(new Date(dateStr)).format(format);
+  // Parse as UTC so the shown date doesn't shift with the build machine's timezone
+  return moment.utc(dateStr, ['YYYY-MM-DD', 'YYYY-MM', 'YYYY']).format(format);
 }
 
 async function render(resume) {
@@ -37,6 +42,9 @@ async function render(resume) {
       d: 'mm'
     });
   }
+
+  // Plain-text summary for the page description and link previews
+  var description = String(resume.basics.summary || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
   resume.basics.summary = new Handlebars.SafeString(resume.basics.summary);
 
@@ -52,6 +60,16 @@ async function render(resume) {
       if (education_info[date]) {
         education_info[date] = getDate(education_info[date]);
       }
+    });
+    if (education_info.description) {
+      education_info.description = new Handlebars.SafeString(education_info.description);
+    }
+  });
+
+  // Authors marked with a trailing * get a "* Corresponding author" note
+  var hasCorrespondingAuthor = _.some(resume.publications, function (publication_info) {
+    return _.some(publication_info.authors, function (author) {
+      return author.trim().endsWith('*');
     });
   });
 
@@ -157,13 +175,16 @@ async function render(resume) {
     return new Handlebars.SafeString(text);
   })
 
-  Handlebars.registerHelper('getBuildDate', function() {
-    return moment().format('MMMM Do YYYY, h:mm:ss a')
+  var buildDate = moment();
+  Handlebars.registerHelper('getBuildDate', function(format) {
+    return buildDate.format(format)
   })
 
   return Handlebars.compile(template)({
     css: css,
-    resume: resume
+    resume: resume,
+    description: description,
+    hasCorrespondingAuthor: hasCorrespondingAuthor
   });
 }
 

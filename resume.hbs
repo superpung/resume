@@ -7,6 +7,14 @@
     <link rel="icon" href={{#resume.configs}}{{icon_svg}}{{/resume.configs}} type="image/svg+xml">
     <link rel="icon" href={{#resume.configs}}{{icon_png}}{{/resume.configs}} type="image/png">
     <title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
+    <meta name="description" content="{{description}}">
+    <link rel="canonical" href="{{resume.configs.site_url}}">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{resume.basics.name}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:url" content="{{resume.configs.site_url}}">
+    <meta property="og:image" content="{{resume.basics.picture}}">
+    <meta name="twitter:card" content="summary">
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
@@ -48,7 +56,7 @@
 
               <div class="social-links">
                 {{#profiles}}
-                  <a class="social-link icon" href="{{url}}" target="_blank">
+                  <a class="social-link icon" href="{{url}}" target="_blank" title="{{network}}" aria-label="{{network}}">
                     <span class="iconify" data-icon="{{toSocialIcon network}}"></span>
                   </a>
                 {{/profiles}}
@@ -70,8 +78,8 @@
             </div>
 
             {{#if resume.news}}
-            <h4 id="news"><span class="title">News</span></h4>
-            <ul class="list-unstyled">
+            <h4 id="news" class="no-print"><span class="title">News</span></h4>
+            <ul class="list-unstyled no-print">
               {{#each resume.news}}
               <li class="card-nested">
                 <div class="content has-sidebar">
@@ -98,9 +106,9 @@
                       {{major}},&nbsp;
                       {{institution}}
                     </p>
-                    <p class="clear-margin-sm">
-                      {{description}}
-                    </p>
+                    {{#if description}}
+                      <p class="clear-margin-sm"><i>{{description}}</i></p>
+                    {{/if}}
                     <p class="text-muted clear-margin-sm">
                       <small>
                         {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
@@ -191,6 +199,9 @@
                     {{#if highlight}}
                     <p class="clear-margin highlight">{{highlight}}</p>
                     {{/if}}
+                    {{#if @last}}{{#if @root.hasCorrespondingAuthor}}
+                    <p class="clear-margin-sm list-note text-muted"><small>* Corresponding author</small></p>
+                    {{/if}}{{/if}}
                   </div>
                 </li>
               {{/each}}
@@ -264,12 +275,12 @@
                           <span>{{location}}</span>
                         {{/if}}
                         {{#if slides}}
-                          <a href="{{slides}}" class='icon' target="_blank">
+                          <a href="{{slides}}" class='icon' target="_blank" title="Slides" aria-label="Slides">
                             <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span>
                           </a>
                         {{/if}}
                         {{#if video}}
-                          <a href="{{video}}" class='icon' target="_blank">
+                          <a href="{{video}}" class='icon' target="_blank" title="Video" aria-label="Video">
                             <span class="iconify" data-icon="{{toSocialIcon 'video'}}"></span>
                           </a>
                         {{/if}}
@@ -337,12 +348,12 @@
                       <strong>{{name}}</strong>{{#if description}}:&nbsp;{{description}}{{/if~}}
                       <small class="text-muted icon-links">
                         {{#if url}}
-                          <a href="{{url}}" class='icon' target="_blank">
+                          <a href="{{url}}" class='icon' target="_blank" title="GitHub" aria-label="GitHub">
                             <span class="iconify" data-icon="{{toSocialIcon 'repo'}}"></span>
                           </a>
                         {{/if}}
                         {{#if homepage}}
-                          <a href="{{homepage}}" class='icon' target="_blank">
+                          <a href="{{homepage}}" class='icon' target="_blank" title="Homepage" aria-label="Homepage">
                             <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span>
                           </a>
                         {{/if}}
@@ -377,7 +388,7 @@
             </ul>
             {{/if}}
 
-            <div style="text-align:center">
+            <div class="page-footer" style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
                 <a href={{#resume.configs}}{{site_url}}/resume.pdf{{/resume.configs}} class="info" itemprop="pdf" target="_blank">
                   PDF Version
@@ -388,9 +399,9 @@
                   Online Version
                 </a>
               </div>
-              <div style="opacity:0.7; font-size:1.2rem; margin-top:1rem;">
+              <div class="last-updated" style="opacity:0.7; font-size:1.2rem; margin-top:1rem;">
                 <p style="margin:0;">
-                  Last updated: <time itemprop="dateModified">{{getBuildDate ''}}</time>
+                  Last updated: <time itemprop="dateModified" datetime="{{getBuildDate 'YYYY-MM-DD'}}">{{getBuildDate 'MMMM D, YYYY'}}</time>
                 </p>
                 <p class="detail no-print" id="busuanzi_container_site_pv" style="margin:0;">
                   Total site visits: <span id="busuanzi_value_site_pv"></span>
