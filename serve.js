@@ -9,7 +9,7 @@
 
 var http = require("http");
 var fs = require('fs');
-var args = require('optimist').argv;
+var args = process.argv.slice(2);
 
 var port = 8888;
 http.createServer(async function (req, res) {
@@ -26,8 +26,8 @@ console.log("Serving..");
 
 async function render() {
   try {
-    var resume = args._.length
-      ? JSON.parse(fs.readFileSync(args._[0], 'utf8'))
+    var resume = args.length
+      ? JSON.parse(fs.readFileSync(args[0], 'utf8'))
       : require("resume-schema").resumeJson;
     return await require("./index.js").render(resume);
   } catch (e) {
