@@ -142,6 +142,7 @@ async function render(resume) {
       homepage: 'ri:home-2-line',
       artifacts: 'ri:archive-line',
       code: 'ri:code-s-slash-line',
+      repo: 'ri:github-line',
       poster: 'ri:layout-masonry-line'
     }[text.trim().toLowerCase()]
   })

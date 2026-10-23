@@ -334,11 +334,11 @@
               <li class="card-nested">
                 <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      <strong>{{name}}</strong>{{#if description}}:&nbsp;{{description}}{{/if}}
-                      <small class="text-muted split-items">
+                      <strong>{{name}}</strong>{{#if description}}:&nbsp;{{description}}{{/if~}}
+                      <small class="text-muted icon-links">
                         {{#if url}}
                           <a href="{{url}}" class='icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'github'}}"></span>
+                            <span class="iconify" data-icon="{{toSocialIcon 'repo'}}"></span>
                           </a>
                         {{/if}}
                         {{#if homepage}}
