@@ -1,8 +1,42 @@
 const fs = require('fs-extra')
+const path = require('path')
 const axios = require('axios')
 const puppeteer = require('puppeteer')
+const sharp = require('sharp')
 
 const gist = 'superpung/70eb33c0bbc20a8f9f5cbed84c43aed9'
+
+// The page shows the photo at 100px, so serve a 300px copy (enough for 3x screens)
+// from dist/ instead of the full-size original the gist links to
+async function buildAvatar(resume) {
+  const url = resume.basics && resume.basics.picture
+  if (!/^https?:\/\//.test(url || '')) {
+    return
+  }
+  try {
+    const { data } = await axios.get(url, { responseType: 'arraybuffer' })
+    await sharp(data)
+      .resize(300, 300)
+      .flatten({ background: '#ffffff' })
+      .jpeg({ quality: 85, mozjpeg: true })
+      .toFile('./dist/avatar.jpg')
+    resume.basics.picture = 'avatar.jpg'
+  } catch (e) {
+    console.warn(`Keeping the original photo, shrinking it failed: ${e.message}`)
+  }
+}
+
+// Netlify headers: the PDF keeps its /resume.pdf URL but is saved as e.g. "Jane_Doe_CV.pdf".
+// filename* carries names with non-ASCII letters (RFC 6266); filename is the ASCII fallback.
+function buildHeaders(resume) {
+  const words = String(resume.basics.name || '').split(/[^\p{L}\p{N}]+/u).filter(Boolean)
+  if (!words.length) {
+    return
+  }
+  const fileName = words.join('_') + '_CV.pdf'
+  const disposition = `inline; filename="${fileName.replace(/[^\w.]/g, '_')}"; filename*=UTF-8''${encodeURIComponent(fileName)}`
+  fs.writeFileSync('./dist/_headers', `/resume.pdf\n  Content-Disposition: ${disposition}\n`)
+}
 
 async function buildHTML() {
   await fs.remove('./dist')
@@ -17,19 +51,23 @@ async function buildHTML() {
     const { data } = await axios.get(`https://gist.githubusercontent.com/${gist}/raw/resume.json`)
     resume = data
   }
+  console.log('Shrinking photo...')
+  await buildAvatar(resume)
   console.log('Rendering...')
   const html = await require("./index.js").render(resume)
   console.log('Saving file...')
   fs.writeFileSync('./dist/index.html', html, 'utf-8')
+  buildHeaders(resume)
   console.log('Done')
   return html
 }
 
-async function buildPDF(html) {
+async function buildPDF() {
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage();
   console.log('Opening puppeteer...')
-  await page.setContent(html, { waitUntil: 'networkidle0' })
+  // Open the saved page, not its HTML, so the photo's relative path resolves
+  await page.goto('file://' + path.resolve('./dist/index.html'), { waitUntil: 'networkidle0' })
   console.log('Generating PDF...')
   const pdf = await page.pdf({
     format: 'A4',
@@ -50,8 +88,8 @@ async function buildPDF(html) {
 }
 
 async function buildAll() {
-  const html = await buildHTML()
-  await buildPDF(html)
+  await buildHTML()
+  await buildPDF()
 }
 
 buildAll().catch(e => {

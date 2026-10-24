@@ -8,6 +8,8 @@
     "postinstall": "pnpm exec puppeteer browsers install chrome"
   },
   "dependencies": {
+    "@iconify-json/academicons": "^1.2.4",
+    "@iconify-json/ri": "^1.2.10",
     "gravatar": "^1.8.2",
     "handlebars": "^4.7.10",
     "moment": "^2.31.0",
@@ -23,7 +25,8 @@
     "grunt-contrib-less": "^3.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "less": "^4.9.1",
-    "puppeteer": "^25.16.0"
+    "puppeteer": "^25.16.0",
+    "sharp": "^0.35.5"
   },
   "pnpm": {
     "overrides": {
