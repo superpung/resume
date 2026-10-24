@@ -107,6 +107,11 @@ async function render(resume) {
   // Plain-text summary for the page description and link previews
   var description = String(resume.basics.summary || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 
+  // Link previews need an absolute photo URL, and build.js may have made it relative
+  var image = resume.basics.picture && resume.configs && resume.configs.site_url
+    ? new URL(resume.basics.picture, resume.configs.site_url + '/').href
+    : resume.basics.picture;
+
   resume.basics.summary = new Handlebars.SafeString(resume.basics.summary);
 
   _.each(resume.news, function (news_info) {
@@ -251,6 +256,7 @@ async function render(resume) {
     css: css,
     resume: resume,
     description: description,
+    image: image,
     hasCorrespondingAuthor: hasCorrespondingAuthor
   });
 }
