@@ -78,6 +78,17 @@ a.text-icon {
     text-decoration: underline;
   }
 
+  // A mouse click on the BibTeX button keeps focus on it; only show the ring for keyboard focus
+  &.bibtex-copy:focus:not(:focus-visible) {
+    outline: 0;
+    text-decoration: none;
+  }
+
+  // Keep the keyboard focus ring off the text (Bootstrap insets it by 2px)
+  &:focus-visible {
+    outline-offset: 2px;
+  }
+
   .iconify {
     color: currentColor;
   }

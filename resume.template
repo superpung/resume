@@ -89,7 +89,8 @@
       "artifacts": "url to your publication artifacts",
       "slides": "url to your publication slides",
       "video": "url to your publication video",
-      "poster": "url to your publication poster"
+      "poster": "url to your publication poster",
+      "bibtex": "optional BibTeX entry for the copy button; left out, one is built from the fields above"
     }
   ],
   "projects": [

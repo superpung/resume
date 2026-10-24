@@ -22,13 +22,52 @@ function getDate(dateStr) {
       format = 'MMM YYYY';
       break;
     case 3:
-      format = 'MMM DD, YYYY';
+      format = 'MMM D, YYYY';
       break;
     default:
       break;
   }
   // Parse as UTC so the shown date doesn't shift with the build machine's timezone
   return moment.utc(dateStr, ['YYYY-MM-DD', 'YYYY-MM', 'YYYY']).format(format);
+}
+
+// BibTeX for a publication, built from its fields unless a "bibtex" field is given
+function getBibtex(publication_info) {
+  if (publication_info.bibtex) {
+    return publication_info.bibtex;
+  }
+  var authors = _.map(publication_info.authors, function (author) {
+    return author.trim().replace(/\*$/, '');
+  });
+  var year = String(publication_info.startDate || '').split('-')[0];
+  var firstWord = (publication_info.title.match(/[A-Za-z]+/) || [''])[0].toLowerCase();
+  var key = (authors[0] || '').split(' ').pop().toLowerCase() + year + firstWord;
+  // A venue like "Journal of Software (in Chinese)" keeps the language as a note
+  var venueMatch = (publication_info.venue || '').match(/^(.*?)\s*\((in [^)]+)\)$/);
+  var venue = venueMatch ? venueMatch[1] : publication_info.venue;
+  var isJournal = /journal|transactions|letters/i.test(venue || '');
+  var fields = [
+    // Braces keep acronyms like FLAME capitalized
+    ['title', publication_info.title.replace(/\b([A-Za-z]*[A-Z][A-Za-z]*[A-Z][A-Za-z]*)\b/g, '{$1}')],
+    ['author', authors.join(' and ')],
+    [isJournal ? 'journal' : 'booktitle', venue],
+    ['year', year]
+  ];
+  // Pages like "36(06):2453-2476" hold the volume and number too
+  var pagesMatch = String(publication_info.pages || '').match(/^(?:(\d+)(?:\((\d+)\))?:)?(\d+)\s*[-–]+\s*(\d+)$/);
+  if (pagesMatch) {
+    fields.push(['volume', pagesMatch[1]], ['number', pagesMatch[2]], ['pages', pagesMatch[3] + '--' + pagesMatch[4]]);
+  }
+  if (publication_info.doi) {
+    fields.push(['doi', publication_info.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//, '')]);
+  }
+  if (venueMatch) {
+    fields.push(['note', '(' + venueMatch[2] + ')']);
+  }
+  fields = _.filter(fields, function (field) { return field[1]; });
+  return '@' + (isJournal ? 'article' : 'inproceedings') + '{' + key + ',\n' + _.map(fields, function (field) {
+    return '  ' + field[0] + ' = {' + field[1] + '}';
+  }).join(',\n') + '\n}';
 }
 
 async function render(resume) {
@@ -74,6 +113,7 @@ async function render(resume) {
   });
 
   _.each(resume.publications, function (publication_info) {
+    publication_info.bibtex = getBibtex(publication_info);
     _.each(['startDate', 'endDate'], function (date) {
       if (publication_info[date]) {
         publication_info[date] = getDate(publication_info[date]);
@@ -161,6 +201,7 @@ async function render(resume) {
       artifacts: 'ri:archive-line',
       code: 'ri:code-s-slash-line',
       repo: 'ri:github-line',
+      bibtex: 'ri:double-quotes-l',
       poster: 'ri:layout-masonry-line'
     }[text.trim().toLowerCase()]
   })
