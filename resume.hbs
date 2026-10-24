@@ -388,7 +388,8 @@
 
             <div class="page-footer" style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
-                <a href={{#resume.configs}}{{site_url}}/resume.pdf{{/resume.configs}} class="info" itemprop="pdf" target="_blank">
+                {{!-- Relative, so every deploy, previews included, links to its own PDF --}}
+                <a href="resume.pdf" class="info" itemprop="pdf" target="_blank">
                   PDF Version
                 </a>
               </div>
