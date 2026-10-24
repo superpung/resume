@@ -45,6 +45,18 @@ body {
   }
 }
 
+// Medium screens: the profile column is narrow, so its card trades side padding for text width.
+// The column keeps the 220px the full padding gave it; below @screen-md its 20fr share is less.
+@media only screen and (min-width: (@screen-tablet + 1)) and (max-width: @screen-md-max) {
+  .container {
+    grid-template-columns: auto minmax(220px, 20fr) 60fr auto;
+  }
+  .container > .row:first-child .card {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
 @media (max-width: @screen-tablet) {
   ul {
     padding-left: 25px;

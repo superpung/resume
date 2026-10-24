@@ -8,6 +8,8 @@
     "postinstall": "pnpm exec puppeteer browsers install chrome"
   },
   "dependencies": {
+    "@iconify-json/academicons": "^1.2.4",
+    "@iconify-json/ri": "^1.2.10",
     "gravatar": "^1.8.2",
     "handlebars": "^4.7.10",
     "moment": "^2.31.0",

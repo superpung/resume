@@ -15,9 +15,7 @@
     <meta property="og:url" content="{{resume.configs.site_url}}">
     <meta property="og:image" content="{{resume.basics.picture}}">
     <meta name="twitter:card" content="summary">
-    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap" rel="stylesheet">
     <script defer src="https://umami.superpung.cn/script.js" data-website-id="26150785-a480-43de-9bb2-a192ba31561f"></script>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <style>{{{css}}}</style>
@@ -57,7 +55,7 @@
               <div class="social-links">
                 {{#profiles}}
                   <a class="social-link icon" href="{{url}}" target="_blank" title="{{network}}" aria-label="{{network}}">
-                    <span class="iconify" data-icon="{{toSocialIcon network}}"></span>
+                    {{toSocialIcon network}}
                   </a>
                 {{/profiles}}
               </div>
@@ -102,16 +100,14 @@
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      <strong>{{degree}}</strong>,&nbsp;
-                      {{major}},&nbsp;
-                      {{institution}}
+                      <strong>{{degree}}</strong>,&nbsp;{{major}},&nbsp;{{institution}}
                     </p>
                     {{#if description}}
                       <p class="clear-margin-sm"><i>{{description}}</i></p>
                     {{/if}}
                     <p class="text-muted clear-margin-sm">
                       <small>
-                        {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
+                        {{startDate}} &ndash; {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
                       </small>
                     </p>
                   </div>
@@ -156,47 +152,47 @@
                       <small class="split-items">
                         {{#if doi}}
                           <a href="{{doi}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span> DOI
+                            {{toSocialIcon 'link'}} DOI
                           </a>
                         {{/if}}
                         {{#if pdf}}
                           <a href="{{pdf}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'pdf'}}"></span> PDF
+                            {{toSocialIcon 'pdf'}} PDF
                           </a>
                         {{/if}}
                         {{#if homepage}}
                           <a href="{{homepage}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span> Homepage
+                            {{toSocialIcon 'homepage'}} Homepage
                           </a>
                         {{/if}}
                         {{#if code}}
                           <a href="{{code}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'code'}}"></span> Code
+                            {{toSocialIcon 'code'}} Code
                           </a>
                         {{/if}}
                         {{#if artifacts}}
                           <a href="{{artifacts}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'artifacts'}}"></span> Artifacts
+                            {{toSocialIcon 'artifacts'}} Artifacts
                           </a>
                         {{/if}}
                          {{#if slides}}
                           <a href="{{slides}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span> Slides
+                            {{toSocialIcon 'slides'}} Slides
                           </a>
                         {{/if}}
                          {{#if video}}
                           <a href="{{video}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'video'}}"></span> Video
+                            {{toSocialIcon 'video'}} Video
                           </a>
                         {{/if}}
                         {{#if poster}}
                           <a href="{{poster}}" class='text-icon' target="_blank">
-                            <span class="iconify" data-icon="{{toSocialIcon 'poster'}}"></span> Poster
+                            {{toSocialIcon 'poster'}} Poster
                           </a>
                         {{/if}}
                         {{#if bibtex}}
                           <a href="#" class='text-icon bibtex-copy no-print' role="button" data-bibtex="{{bibtex}}" title="Copy BibTeX">
-                            <span class="iconify" data-icon="{{toSocialIcon 'bibtex'}}"></span> <span class="bibtex-label">BibTeX</span>
+                            {{toSocialIcon 'bibtex'}} <span class="bibtex-label">BibTeX</span>
                           </a>
                         {{/if}}
                       </small>
@@ -220,15 +216,14 @@
               <li class="card-nested">
                 <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      <strong>{{title}}</strong>,&nbsp;
-                      {{institution}}
+                      <strong>{{title}}</strong>,&nbsp;{{institution}}
                     </p>
                     <p class="text-muted clear-margin-sm">
                       {{description}}
                     </p>
                     <p class="text-muted clear-margin-sm">
                       <small>
-                        {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
+                        {{startDate}} &ndash; {{#if endDate}}{{endDate}}{{else}}Now{{/if}}
                       </small>
                     </p>
                 </div>
@@ -265,8 +260,7 @@
               <li class="card-nested" style="margin-bottom: 0.5em">
                 <div class="content has-sidebar">
                     <p class="clear-margin-sm">
-                      <strong>{{title}}</strong>,&nbsp;
-                      {{#if website}}<a href="{{website}}" target="_blank">{{publisher}}</a>{{else}}{{publisher}}{{/if}}
+                      <strong>{{title}}</strong>,&nbsp;{{#if website}}<a href="{{website}}" target="_blank">{{publisher}}</a>{{else}}{{publisher}}{{/if}}
                     </p>
                     {{#if description}}
                       <p class="clear-margin-sm">
@@ -281,12 +275,12 @@
                         {{/if}}
                         {{#if slides}}
                           <a href="{{slides}}" class='icon' target="_blank" title="Slides" aria-label="Slides">
-                            <span class="iconify" data-icon="{{toSocialIcon 'slides'}}"></span>
+                            {{toSocialIcon 'slides'}}
                           </a>
                         {{/if}}
                         {{#if video}}
                           <a href="{{video}}" class='icon' target="_blank" title="Video" aria-label="Video">
-                            <span class="iconify" data-icon="{{toSocialIcon 'video'}}"></span>
+                            {{toSocialIcon 'video'}}
                           </a>
                         {{/if}}
                       </small>
@@ -354,12 +348,12 @@
                       <small class="text-muted icon-links">
                         {{#if url}}
                           <a href="{{url}}" class='icon' target="_blank" title="GitHub" aria-label="GitHub">
-                            <span class="iconify" data-icon="{{toSocialIcon 'repo'}}"></span>
+                            {{toSocialIcon 'repo'}}
                           </a>
                         {{/if}}
                         {{#if homepage}}
                           <a href="{{homepage}}" class='icon' target="_blank" title="Homepage" aria-label="Homepage">
-                            <span class="iconify" data-icon="{{toSocialIcon 'homepage'}}"></span>
+                            {{toSocialIcon 'homepage'}}
                           </a>
                         {{/if}}
                       </small>
@@ -378,8 +372,7 @@
                 <li class="card-nested">
                   <div class="content has-sidebar">
                     <p class="clear-margin-sm" itemprop="award">
-                      <strong>{{title}}</strong>,&nbsp;
-                      {{awarder}}
+                      <strong>{{title}}</strong>,&nbsp;{{awarder}}
                     </p>
                     {{#if description}}
                       <p class="clear-margin-sm"><i>{{description}}</i></p>

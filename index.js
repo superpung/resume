@@ -4,6 +4,28 @@ var gravatar = require('gravatar');
 var _ = require('underscore');
 var moment = require('moment');
 
+// Icon sets for toSocialIcon, rendered to inline SVG at build time instead of by a script in the page
+var iconSets = {
+  ri: require('@iconify-json/ri/icons.json'),
+  academicons: require('@iconify-json/academicons/icons.json')
+};
+
+// Inline SVG for an icon like "ri:github-fill", or nothing for an unknown icon
+function toSvg(name) {
+  var parts = String(name).split(':');
+  var set = iconSets[parts[0]];
+  var icon = set && set.icons[parts[1]];
+  if (!icon) {
+    return '';
+  }
+  var width = icon.width || set.width || 16;
+  var height = icon.height || set.height || 16;
+  var viewBox = [icon.left || set.left || 0, icon.top || set.top || 0, width, height];
+  // 1em tall and as wide as the icon's aspect ratio, rounded to 0.01em as the Iconify script did
+  return '<svg class="iconify" width="' + Math.round(width / height * 100) / 100 + 'em" height="1em" viewBox="' + viewBox.join(' ') +
+    '" aria-hidden="true" style="vertical-align: -0.125em">' + icon.body + '</svg>';
+}
+
 function hasEmail(resume) {
   return !!resume.basics && !!resume.basics.email;
 }
@@ -137,13 +159,17 @@ async function render(resume) {
 
     var description = [
       'In: <i>' + publication_info.venue + '</i>',
-      publication_info.startDate + (publication_info.endDate ? ('-' + publication_info.endDate) : ''),
-      publication_info.pages ? publication_info.pages : 'pages to appear'
+      publication_info.startDate + (publication_info.endDate ? ('&ndash;' + publication_info.endDate) : ''),
+      // Page ranges like "36(06):2453-2476" get an en dash and stay on one line
+      publication_info.pages
+        ? '<span class="text-nowrap">' + String(publication_info.pages).replace(/(\d)\s*[-–]+\s*(\d)/, '$1&ndash;$2') + '</span>'
+        : 'pages to appear'
     ];
     if (publication_info.location) {
       description.push(publication_info.location);
     }
-    publication_info.description = new Handlebars.SafeString(description.join(',&nbsp;') + '.');
+    // Plain spaces, so a narrow screen wraps between the parts rather than inside the venue
+    publication_info.description = new Handlebars.SafeString(description.join(', ') + '.');
   });
 
   _.each(resume.patents, function (patent_info) {
@@ -183,7 +209,7 @@ async function render(resume) {
   });
 
   Handlebars.registerHelper('toSocialIcon', function (text) {
-    return {
+    return new Handlebars.SafeString(toSvg({
       linkedin: 'ri:linkedin-box-fill',
       github: 'ri:github-fill',
       instagram: 'ri:instagram-line',
@@ -203,7 +229,7 @@ async function render(resume) {
       repo: 'ri:github-line',
       bibtex: 'ri:double-quotes-l',
       poster: 'ri:layout-masonry-line'
-    }[text.trim().toLowerCase()]
+    }[text.trim().toLowerCase()]));
   })
 
   Handlebars.registerHelper('join', function (arr) {
