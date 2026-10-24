@@ -26,6 +26,18 @@ async function buildAvatar(resume) {
   }
 }
 
+// Netlify headers: the PDF keeps its /resume.pdf URL but is saved as e.g. "Jane_Doe_CV.pdf".
+// filename* carries names with non-ASCII letters (RFC 6266); filename is the ASCII fallback.
+function buildHeaders(resume) {
+  const words = String(resume.basics.name || '').split(/[^\p{L}\p{N}]+/u).filter(Boolean)
+  if (!words.length) {
+    return
+  }
+  const fileName = words.join('_') + '_CV.pdf'
+  const disposition = `inline; filename="${fileName.replace(/[^\w.]/g, '_')}"; filename*=UTF-8''${encodeURIComponent(fileName)}`
+  fs.writeFileSync('./dist/_headers', `/resume.pdf\n  Content-Disposition: ${disposition}\n`)
+}
+
 async function buildHTML() {
   await fs.remove('./dist')
   await fs.ensureDir('./dist')
@@ -45,6 +57,7 @@ async function buildHTML() {
   const html = await require("./index.js").render(resume)
   console.log('Saving file...')
   fs.writeFileSync('./dist/index.html', html, 'utf-8')
+  buildHeaders(resume)
   console.log('Done')
   return html
 }
