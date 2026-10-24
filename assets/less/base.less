@@ -18,7 +18,8 @@ body {
 .name-and-profession {
   .name {
     font-size: 2.8rem;
-    margin-bottom: 0;
+    // The tight line height leaves little room above the title otherwise
+    margin-bottom: 0.6rem;
   }
   .profession {
     margin-bottom: 0.5rem;
@@ -32,6 +33,15 @@ body {
     .page {
       max-width: 60em;
     }
+  }
+}
+
+// Wide screens: the profile stays in view while the content scrolls
+@media only screen and (min-width: (@screen-tablet + 1)) {
+  .container > .row:first-child {
+    position: sticky;
+    top: 0;
+    align-self: start;
   }
 }
 

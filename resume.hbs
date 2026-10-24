@@ -194,6 +194,11 @@
                             <span class="iconify" data-icon="{{toSocialIcon 'poster'}}"></span> Poster
                           </a>
                         {{/if}}
+                        {{#if bibtex}}
+                          <a href="#" class='text-icon bibtex-copy no-print' role="button" data-bibtex="{{bibtex}}" title="Copy BibTeX">
+                            <span class="iconify" data-icon="{{toSocialIcon 'bibtex'}}"></span> <span class="bibtex-label">BibTeX</span>
+                          </a>
+                        {{/if}}
                       </small>
                     </p>
                     {{#if highlight}}
@@ -412,5 +417,31 @@
         </div>
       </section>
     </div>
+    <script>
+      // Copy a publication's BibTeX and briefly show "Copied"
+      document.querySelectorAll('.bibtex-copy').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          var text = button.getAttribute('data-bibtex');
+          var copy = navigator.clipboard && window.isSecureContext
+            ? navigator.clipboard.writeText(text)
+            : new Promise(function (resolve, reject) {
+                var area = document.createElement('textarea');
+                area.value = text;
+                area.style.position = 'fixed';
+                area.style.opacity = '0';
+                document.body.appendChild(area);
+                area.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(area);
+                ok ? resolve() : reject();
+              });
+          var label = button.querySelector('.bibtex-label');
+          copy.then(function () { label.textContent = 'Copied'; }, function () { label.textContent = 'Copy failed'; });
+          clearTimeout(button.resetTimer);
+          button.resetTimer = setTimeout(function () { label.textContent = 'BibTeX'; }, 1500);
+        });
+      });
+    </script>
   </body>
 </html>
