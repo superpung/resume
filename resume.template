@@ -1,8 +1,10 @@
 {
   "configs": {
     "icon_png": "url to a png file, used for the resume website icon",
-    "icon_svg": "ditto, but svg",
-    "site_url": "the resume website url, but don't end with a slash"
+    "icon_svg": "ditto, but svg (ignored unless the url ends with .svg)",
+    "site_url": "the resume website url, but don't end with a slash",
+    "title": "optional page title for browser tabs and search results, such as your name and university; defaults to your name",
+    "description": "optional page description of about 150 characters for search results and link previews; defaults to your summary"
   },
   "basics": {
     "name": "your name",
@@ -77,10 +79,10 @@
         "author 3*, a trailing * marks the corresponding author and adds a note below the publications"
       ],
       "venue": "the publication venue, such as IEEE Transactions on Pattern Analysis and Machine Intelligence",
-      "startDate": "the publisher start date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
+      "startDate": "the publication date, which format must be YYYY-MM-DD or YYYY-MM or YYYY; with a month it is cited as e.g. Nov. 2026",
       "endDate": "the publisher end date, which format must be YYYY-MM-DD or YYYY-MM or YYYY",
-      "pages": "the pages of your publication",
-      "location": "location of publisher",
+      "pages": "the pages of your publication, such as 1-12, or volume(issue):pages such as 45(11):5784-5797; empty means to appear",
+      "location": "location of the conference, cited for proceedings",
       "highlight": "best paper award, etc.",
       "doi": "the doi link of your publication",
       "pdf": "url to your publication pdf file",

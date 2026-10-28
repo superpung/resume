@@ -85,6 +85,32 @@
     gap: 0 0.5em;
     align-items: center;
     margin-left: 0.5em;
+
+    // Touch targets at least 24px apart (WCAG 2.5.8) without moving the icons:
+    // the first link reaches left into the space before it, the last one right
+    a:first-child {
+        padding-left: 0.4em;
+        margin-left: -0.4em;
+    }
+    a:last-child {
+        padding-right: 0.4em;
+        margin-right: -0.4em;
+    }
+
+    // Keep the keyboard focus ring on the icon rather than the wider target
+    a:focus {
+        outline: 0;
+    }
+    a:focus-visible svg {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: 2px;
+    }
+}
+
+// Reference lines wrap without leaving the date alone on the last line
+.citation {
+    text-wrap: pretty;
 }
 
 // A small note under the last entry of a list, e.g. "* Corresponding author"
