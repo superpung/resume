@@ -36,6 +36,9 @@ importers:
         specifier: ^1.13.8
         version: 1.13.8
     devDependencies:
+      '@fontsource/nunito-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
       axios:
         specifier: ^1.20.0
         version: 1.20.0
@@ -71,6 +74,9 @@ packages:
 
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
+
+  '@fontsource/nunito-sans@5.3.0':
+    resolution: {integrity: sha512-CctNhebQ2YYJUwVMCAkHexQg7yedfz9s8JzaETALyc9QIQuDFRlNTWXux9H5PsNLgptPkrzRDomAdLJt1sDFpQ==}
 
   '@iconify-json/academicons@1.2.4':
     resolution: {integrity: sha512-rYCV0AzKJjFwweoZmYymS3YUnke35UpqLC/6x59T96SnfD+vvi3eBjqs24RVIR10PJnANF+GhuliIFb2t9EaFw==}
@@ -1299,6 +1305,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@fontsource/nunito-sans@5.3.0': {}
 
   '@iconify-json/academicons@1.2.4':
     dependencies:

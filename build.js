@@ -27,6 +27,14 @@ async function buildAvatar(resume) {
   }
 }
 
+// The Nunito Sans files that assets/less/fonts.less loads from fonts/
+async function buildFonts() {
+  const files = path.join(__dirname, 'node_modules/@fontsource/nunito-sans/files')
+  for (const name of ['latin-400', 'latin-ext-400', 'latin-700', 'latin-ext-700']) {
+    await fs.copy(path.join(files, `nunito-sans-${name}-normal.woff2`), `./dist/fonts/nunito-sans-${name}-normal.woff2`)
+  }
+}
+
 // Search results want a favicon that is a multiple of 48px and iOS an opaque 180px icon,
 // so make both from the PNG icon the gist links to
 async function buildIcons(resume) {
@@ -115,9 +123,10 @@ async function buildHTML() {
   // Rendering rewrites fields for display; the crawler files start from the data as written
   const raw = JSON.parse(JSON.stringify(resume))
   const site = String((resume.configs || {}).site_url || '').replace(/\/$/, '')
-  console.log('Shrinking photo and icons...')
+  console.log('Shrinking photo and icons, copying fonts...')
   await buildAvatar(resume)
   await buildIcons(resume)
+  await buildFonts()
   console.log('Rendering...')
   const html = await theme.render(resume)
   console.log('Saving files...')
@@ -130,7 +139,8 @@ async function buildHTML() {
 }
 
 async function buildPDF() {
-  const browser = await puppeteer.launch({ headless: true })
+  // The saved page loads its fonts from files next to it, which Chrome blocks by default
+  const browser = await puppeteer.launch({ headless: true, args: ['--allow-file-access-from-files'] })
   const page = await browser.newPage();
   console.log('Opening puppeteer...')
   // Open the saved page, not its HTML, so the photo's relative path resolves

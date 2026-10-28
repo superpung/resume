@@ -18,6 +18,12 @@ http.createServer(async function (req, res) {
       "Content-Type": "text/html"
     });
     res.end(await render());
+  } else if (/^\/fonts\/[\w-]+\.woff2$/.test(req.url)) {
+    // The page's fonts, which build.js copies into dist/fonts/ for the real site
+    fs.readFile(__dirname + '/node_modules/@fontsource/nunito-sans/files' + req.url.slice('/fonts'.length), function (err, data) {
+      res.writeHead(err ? 404 : 200, { "Content-Type": "font/woff2" });
+      res.end(data);
+    });
   }
 }).listen(port);
 
