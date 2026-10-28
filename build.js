@@ -80,17 +80,13 @@ function buildRedirects(site) {
   }
 }
 
-// Files for crawlers: search engines and AI assistants may read and cite the site, AI training may not.
+// Files for crawlers: search engines and AI models may index, cite and learn from the site.
 // llms.txt is the resume as Markdown (https://llmstxt.org).
 function buildCrawlerFiles(site, raw) {
   const robots = [
     'User-agent: *',
-    'Content-Signal: search=yes, ai-input=yes, ai-train=no',
-    'Allow: /',
-    '',
-    '# Crawlers that collect training data for AI models',
-    ...['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'meta-externalagent', 'Bytespider'].map(bot => `User-agent: ${bot}`),
-    'Disallow: /'
+    'Content-Signal: search=yes, ai-input=yes, ai-train=yes',
+    'Allow: /'
   ]
   if (site) {
     const today = new Date().toISOString().slice(0, 10)
