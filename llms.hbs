@@ -1,0 +1,111 @@
+{{#with resume.basics}}
+# {{name}}
+
+{{#if @root.page.custom}}
+> {{@root.page.description}}
+
+{{md summary}}
+{{else}}
+> {{md summary}}
+{{/if}}
+
+{{#if label}}
+- Position: {{label}}{{#if address}}, {{address}}{{/if}}
+{{/if}}
+{{#if email}}
+- Email: {{email}}
+{{/if}}
+- Homepage: {{@root.site}}/
+- CV (PDF): {{@root.site}}/resume.pdf
+{{#each profiles}}
+- {{network}}: {{url}}
+{{/each}}
+{{/with}}
+{{#if resume.news}}
+
+## News
+
+{{#each resume.news}}
+- {{date date}}: {{md title}}
+{{/each}}
+{{/if}}
+{{#if resume.education}}
+
+## Education
+
+{{#each resume.education}}
+- {{degree}}, {{major}}, {{institution}}, {{date startDate}} – {{#if endDate}}{{date endDate}}{{else}}Now{{/if}}{{#if description}}. {{md description}}{{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.interests}}
+
+## Research Interests
+
+{{#each resume.interests}}
+- {{topic}}{{#if description}}: {{description}}{{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.publications}}
+
+## Publications
+
+{{#each resume.publications}}
+- {{title}}. {{authors authors}}. {{citation this}}{{#if doi}} [DOI]({{doiUrl doi}}){{/if}}{{#if pdf}} [PDF]({{pdf}}){{/if}}{{#if homepage}} [Homepage]({{homepage}}){{/if}}{{#if code}} [Code]({{code}}){{/if}}{{#if slides}} [Slides]({{slides}}){{/if}}{{#if video}} [Video]({{video}}){{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.projects}}
+
+## Research Projects
+
+{{#each resume.projects}}
+- {{title}}, {{institution}}. {{description}}, {{date startDate}} – {{#if endDate}}{{date endDate}}{{else}}Now{{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.patents}}
+
+## Patents
+
+{{#each resume.patents}}
+- {{md title}}. {{description}}, {{date date}}
+{{/each}}
+{{/if}}
+{{#if resume.talks}}
+
+## Talks
+
+{{#each resume.talks}}
+- {{title}}, {{#if website}}[{{publisher}}]({{website}}){{else}}{{publisher}}{{/if}}. {{date date}}{{#if location}}, {{location}}{{/if}}{{#if slides}} [Slides]({{slides}}){{/if}}{{#if video}} [Video]({{video}}){{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.services}}
+
+## Academic Services
+
+{{#each resume.services}}
+- {{position}}, {{event}}. {{date date}}{{#if location}}, {{location}}{{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.teaching}}
+
+## Teaching
+
+{{#each resume.teaching}}
+- {{md course}}. {{date date}}{{#if location}}, {{location}}{{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.opensource}}
+
+## Side Projects
+
+{{#each resume.opensource}}
+- {{#if url}}[{{name}}]({{url}}){{else}}{{name}}{{/if}}{{#if description}}: {{md description}}{{/if}}{{#if homepage}} [Homepage]({{homepage}}){{/if}}
+{{/each}}
+{{/if}}
+{{#if resume.awards}}
+
+## Honors & Awards
+
+{{#each resume.awards}}
+- {{title}}, {{awarder}}. {{date date}}{{#if description}}. {{md description}}{{/if}}
+{{/each}}
+{{/if}}

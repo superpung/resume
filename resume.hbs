@@ -4,49 +4,52 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href={{#resume.configs}}{{icon_svg}}{{/resume.configs}} type="image/svg+xml">
-    <link rel="icon" href={{#resume.configs}}{{icon_png}}{{/resume.configs}} type="image/png">
-    <title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
+    {{#if iconSvg}}<link rel="icon" href="{{iconSvg}}" type="image/svg+xml">{{/if}}
+    {{#if resume.configs.icon_png}}<link rel="icon" href="{{resume.configs.icon_png}}" type="image/png">{{/if}}
+    {{#if resume.configs.icon_apple}}<link rel="apple-touch-icon" href="{{resume.configs.icon_apple}}">{{/if}}
+    <title>{{title}}</title>
     <meta name="description" content="{{description}}">
     <link rel="canonical" href="{{resume.configs.site_url}}">
     <meta property="og:type" content="profile">
-    <meta property="og:title" content="{{resume.basics.name}}">
+    <meta property="og:title" content="{{title}}">
     <meta property="og:description" content="{{description}}">
     <meta property="og:url" content="{{resume.configs.site_url}}">
     <meta property="og:image" content="{{image}}">
     <meta name="twitter:card" content="summary">
+    {{!-- email_off keeps Cloudflare from rewriting the email in the structured data --}}
+    <!--email_off--><script type="application/ld+json">{{{jsonLd}}}</script><!--/email_off-->
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap" rel="stylesheet">
     <script defer src="https://umami.superpung.cn/script.js" data-website-id="26150785-a480-43de-9bb2-a192ba31561f"></script>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <style>{{{css}}}</style>
   </head>
 
-  <body itemscope itemtype="http://schema.org/Person">
+  <body>
 
     <div class="container">
-      <section class="row">
+      <header class="row">
         <div class="card-wrapper">
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
                 <div class="profile-pic">
                   <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
-                    alt="{{name}}" src="{{picture}}" itemprop="image">
+                    alt="{{name}}" src="{{picture}}">
                 </div>
                 <div class="contact-details">
                   <div class="name-and-profession">
-                    <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
-                    <div class="text-muted profession" itemprop="professionTitle">{{label}}</div>
+                    <h1 class="text-bolder name"> {{name}}</h1>
+                    <div class="text-muted profession">{{label}}</div>
                   </div>
 
                   {{#if address}}
-                    <div class="text-muted info" itemprop="address" style="font-size:0.9em">{{address}}</div>
+                    <div class="text-muted info" style="font-size:0.9em">{{address}}</div>
                   {{/if}}
 
                   {{#if email}}
                     <div class="detail">
                       <span class="info">
-                        <a href="mailto:{{email}}" class="link-disguise" itemprop="email" target="_blank">{{email}}</a>
+                        <!--email_off--><a href="mailto:{{email}}" class="link-disguise" target="_blank">{{email}}</a><!--/email_off-->
                       </span>
                     </div>
                   {{/if}}
@@ -55,7 +58,7 @@
               <div class="social-links">
                 {{#profiles}}
                   <a class="social-link icon" href="{{url}}" target="_blank" title="{{network}}" aria-label="{{network}}">
-                    {{toSocialIcon network}}
+                    {{toSocialIcon network}}<span class="sr-only">{{network}}</span>
                   </a>
                 {{/profiles}}
               </div>
@@ -64,19 +67,19 @@
           {{/resume.basics}}
 
         </div>
-      </section>
+      </header>
 
-      <section class="row page">
+      <main class="row page">
         <div class="card-wrapper">
           <div class="card background-card">
 
-            <h4 id="about"><span class="title">About</span></h4>
-            <div class="card-nested" itemprop="description">
+            <h2 id="about"><span class="title">About</span></h2>
+            <div class="card-nested">
               <p> {{breaklines resume.basics.summary}} </p>
             </div>
 
             {{#if resume.news}}
-            <h4 id="news" class="no-print"><span class="title">News</span></h4>
+            <h2 id="news" class="no-print"><span class="title">News</span></h2>
             <ul class="list-unstyled no-print">
               {{#each resume.news}}
               <li class="card-nested">
@@ -94,7 +97,7 @@
             {{/if}}
 
             {{#if resume.education}}
-            <h4><span class="title">Education</span></h4>
+            <h2 id="education"><span class="title">Education</span></h2>
             <ul class="list-unstyled">
               {{#each resume.education}}
                 <li class="card-nested">
@@ -117,7 +120,7 @@
             {{/if}}
 
             {{#if resume.interests}}
-            <h4 id="interests"><span class="title">Research Interests</span></h4>
+            <h2 id="interests"><span class="title">Research Interests</span></h2>
             <ul class="list-unstyled">
               {{#each resume.interests}}
               <li class="card-nested">
@@ -132,7 +135,7 @@
             {{/if}}
 
             {{#if resume.publications}}
-            <h4 id="publications"><span class="title">Publications</span></h4>
+            <h2 id="publications"><span class="title">Publications</span></h2>
             <ol class="list-unstyled">
               {{#each resume.publications}}
                 <li class="card-nested" style="margin-bottom: 0.5em">
@@ -143,7 +146,7 @@
                       <span class="badge">{{grade}}</span>
                     </p>
                     <p class="clear-margin">{{authors}}</p>
-                    <p class="clear-margin-sm">
+                    <p class="clear-margin-sm citation">
                       <small>
                         {{description}}
                       </small>
@@ -210,7 +213,7 @@
             {{/if}}
 
             {{#if resume.projects}}
-            <h4 id="projects"><span class="title">Research Projects</span></h4>
+            <h2 id="projects"><span class="title">Research Projects</span></h2>
             <ul class="list-unstyled">
               {{#each resume.projects}}
               <li class="card-nested">
@@ -233,7 +236,7 @@
             {{/if}}
 
             {{#if resume.patents}}
-            <h4 id="patents"><span class="title">Patents</span></h4>
+            <h2 id="patents"><span class="title">Patents</span></h2>
             <ul class="list-unstyled">
               {{#each resume.patents}}
               <li class="card-nested">
@@ -254,7 +257,7 @@
             {{/if}}
 
             {{#if resume.talks}}
-            <h4 id="talks"><span class="title">Talks</span></h4>
+            <h2 id="talks"><span class="title">Talks</span></h2>
             <ul class="list-unstyled">
               {{#each resume.talks}}
               <li class="card-nested" style="margin-bottom: 0.5em">
@@ -275,12 +278,12 @@
                         {{/if}}
                         {{#if slides}}
                           <a href="{{slides}}" class='icon' target="_blank" title="Slides" aria-label="Slides">
-                            {{toSocialIcon 'slides'}}
+                            {{toSocialIcon 'slides'}}<span class="sr-only">Slides</span>
                           </a>
                         {{/if}}
                         {{#if video}}
                           <a href="{{video}}" class='icon' target="_blank" title="Video" aria-label="Video">
-                            {{toSocialIcon 'video'}}
+                            {{toSocialIcon 'video'}}<span class="sr-only">Video</span>
                           </a>
                         {{/if}}
                       </small>
@@ -292,7 +295,7 @@
             {{/if}}
 
             {{#if resume.services}}
-            <h4 id="services"><span class="title">Academic Services</span></h4>
+            <h2 id="services"><span class="title">Academic Services</span></h2>
             <ul class="list-unstyled">
               {{#each resume.services}}
                 <li class="card-nested">
@@ -315,7 +318,7 @@
             {{/if}}
 
             {{#if resume.teaching}}
-            <h4 id="teaching"><span class="title">Teaching</span></h4>
+            <h2 id="teaching"><span class="title">Teaching</span></h2>
             <ul class="list-unstyled">
               {{#each resume.teaching}}
                 <li class="card-nested">
@@ -338,7 +341,7 @@
             {{/if}}
 
             {{#if resume.opensource}}
-            <h4 id="opensource"><span class="title">Side Projects</span></h4>
+            <h2 id="opensource"><span class="title">Side Projects</span></h2>
             <ul class="list-unstyled">
               {{#each resume.opensource}}
               <li class="card-nested">
@@ -348,12 +351,12 @@
                       <small class="text-muted icon-links">
                         {{#if url}}
                           <a href="{{url}}" class='icon' target="_blank" title="GitHub" aria-label="GitHub">
-                            {{toSocialIcon 'repo'}}
+                            {{toSocialIcon 'repo'}}<span class="sr-only">GitHub</span>
                           </a>
                         {{/if}}
                         {{#if homepage}}
                           <a href="{{homepage}}" class='icon' target="_blank" title="Homepage" aria-label="Homepage">
-                            {{toSocialIcon 'homepage'}}
+                            {{toSocialIcon 'homepage'}}<span class="sr-only">Homepage</span>
                           </a>
                         {{/if}}
                       </small>
@@ -366,12 +369,12 @@
             {{/if}}
 
             {{#if resume.awards}}
-            <h4 id="awards"><span class="title">Honors & Awards</span></h4>
+            <h2 id="awards"><span class="title">Honors & Awards</span></h2>
             <ul class="list-unstyled">
               {{#each resume.awards}}
                 <li class="card-nested">
                   <div class="content has-sidebar">
-                    <p class="clear-margin-sm" itemprop="award">
+                    <p class="clear-margin-sm">
                       <strong>{{title}}</strong>,&nbsp;{{awarder}}
                     </p>
                     {{#if description}}
@@ -386,30 +389,30 @@
             </ul>
             {{/if}}
 
-            <div class="page-footer" style="text-align:center">
+            <footer class="page-footer" style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
                 {{!-- Relative, so every deploy, previews included, links to its own PDF --}}
-                <a href="resume.pdf" class="info" itemprop="pdf" target="_blank">
+                <a href="resume.pdf" class="info" target="_blank">
                   PDF Version
                 </a>
               </div>
               <div class="detail print-only" style="font-size:1.5rem;margin-top:2rem;" >
-                <a href={{#resume.configs}}{{site_url}}{{/resume.configs}} class="info" itemprop="pdf" target="_blank">
+                <a href={{#resume.configs}}{{site_url}}{{/resume.configs}} class="info" target="_blank">
                   Online Version
                 </a>
               </div>
               <div class="last-updated" style="opacity:0.7; font-size:1.2rem; margin-top:1rem;">
                 <p style="margin:0;">
-                  Last updated: <time itemprop="dateModified" datetime="{{getBuildDate 'YYYY-MM-DD'}}">{{getBuildDate 'MMMM D, YYYY'}}</time>
+                  Last updated: <time datetime="{{getBuildDate 'YYYY-MM-DD'}}">{{getBuildDate 'MMMM D, YYYY'}}</time>
                 </p>
                 <p class="detail no-print" id="busuanzi_container_site_pv" style="margin:0;">
                   Total site visits: <span id="busuanzi_value_site_pv"></span>
                 </p>
               </div>
-            </div>
+            </footer>
           </div>
         </div>
-      </section>
+      </main>
     </div>
     <script>
       // Copy a publication's BibTeX and briefly show "Copied"

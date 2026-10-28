@@ -13,6 +13,7 @@
     "gravatar": "^1.8.2",
     "handlebars": "^4.7.10",
     "moment": "^2.31.0",
+    "purgecss": "^8.0.0",
     "resume-schema": "1.0.1",
     "underscore": "^1.13.8"
   },
