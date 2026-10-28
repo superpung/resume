@@ -219,8 +219,11 @@ function getJsonLd(resume, page) {
       knowsAbout: _.pluck(resume.interests, 'topic'),
       award: _.pluck(resume.awards, 'title'),
       // Profiles elsewhere tell this person apart from others with the same name
-      sameAs: _.pluck(basics.profiles, 'url')
-    }].concat(articles)
+      sameAs: _.pluck(basics.profiles, 'url'),
+      // Papers as works this person wrote. Nested rather than at the top of the graph, where tools
+      // like Readability take the first article for the page itself
+      '@reverse': { author: articles }
+    }]
   };
   // Leave out empty fields, and escape "<" so the data can't close its script tag
   return JSON.stringify(data, function (key, value) {
